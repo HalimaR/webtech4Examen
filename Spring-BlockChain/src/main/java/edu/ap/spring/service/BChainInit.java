@@ -1,8 +1,10 @@
 package edu.ap.spring.service;
 
+import java.security.PublicKey;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -36,7 +38,7 @@ public class BChainInit {
         genesisTransaction.setValue(100f);
         genesisTransaction.generateSignature(coinbase.getPrivateKey()); // manually sign the genesis transaction
         genesisTransaction.transactionId = "0"; // manually set the transaction id
-                                                                                           // list.
+        genesisTransaction.processTransaction(bChain);
         // creating and Mining Genesis block
         genesis.setPreviousHash("0");
         genesis.setTimeStamp();
