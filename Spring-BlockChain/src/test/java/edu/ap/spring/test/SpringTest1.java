@@ -50,6 +50,11 @@ public class SpringTest1 {
 
 	@Test
 	public void transaction1() {
+		Transaction transaction = new Transaction(); 
+		transaction.setSender(walletA.publicKey); 
+		transaction.setRecipient(walletB.publicKey);
+		transaction.setValue(5f);
+		
 		Block block = new Block();
 		block.setPreviousHash(bChain.getLastHash());
 			
@@ -62,5 +67,6 @@ public class SpringTest1 {
 		
 		assertEquals(60f, walletA.getBalance(), 0);
 		assertEquals(40f, walletB.getBalance(), 0);
+		
 	}
 }

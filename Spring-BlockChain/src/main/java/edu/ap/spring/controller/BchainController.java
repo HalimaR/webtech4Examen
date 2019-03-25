@@ -34,14 +34,14 @@ public class BchainController {
         return "index";
     }
 
-    @PostMapping("/balance")
+    @PostMapping("/balance{wallet}")
     public String balance(@RequestParam("walletKey") String key, Model model) {
         Wallet wallet = bChain.getWalletFromKey(key);
         float balance = wallet.getBalance();
         model.addAttribute("balance", balance);
         return "balance";
     }
-/*
+
     @PostMapping("/transaction")
     public String sendFunds(@RequestParam("from") String from, @RequestParam("to") String to,
             @RequestParam("amount") Float amount) {
@@ -54,5 +54,5 @@ public class BchainController {
         bChain.bChain.addBlock(bChain.block1);
         return "redirect:/";
     }
-    */
+    
 }

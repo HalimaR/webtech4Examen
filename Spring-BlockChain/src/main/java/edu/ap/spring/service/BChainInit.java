@@ -21,7 +21,6 @@ public class BChainInit {
     public Block genesis, block1;
     @Autowired
     public Transaction genesisTransaction;
-    Transaction transaction = new Transaction();
 
     private Map<String, Wallet> map = new HashMap<String, Wallet>();
 
@@ -32,11 +31,12 @@ public class BChainInit {
         walletB.generateKeyPair();
 
         // create genesis transaction, which sends 100 coins to walletA:
-        transaction.setSender(coinbase.getPublicKey());
-        transaction.setRecipient(walletA.getPublicKey());
-        transaction.setValue(100f);
-        transaction.transactionId = "0"; // manually set the transaction id
-                                                                                                       // list.
+        genesisTransaction.setSender(coinbase.publicKey);
+        genesisTransaction.setRecipient(walletA.publicKey);
+        genesisTransaction.setValue(100f);
+        genesisTransaction.generateSignature(coinbase.getPrivateKey()); // manually sign the genesis transaction
+        genesisTransaction.transactionId = "0"; // manually set the transaction id
+                                                                                           // list.
         // creating and Mining Genesis block
         genesis.setPreviousHash("0");
         genesis.setTimeStamp();
