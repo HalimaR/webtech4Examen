@@ -6,5 +6,5 @@ from django.utils import timezone
 
 
 def question(request):
-    now = timezone.localtime()
+    now = timezone.localtime(timezone.get_current_timezone)
     return render(request,'question/timezone.html',{'now': now})
